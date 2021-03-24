@@ -210,19 +210,18 @@ class BaseGenerator(basemodel.BaseModel):
         #real_images_low,fake_images_low=generateDataWithDifferentFrequencies_exchange(real_images,fake_images,r=R)
 
         # Compute output logit of D thinking image real
-        #output = netD(fake_images)
-        output_real = netD(real_images,fake_images)
+        output = netD(fake_images)
+        #output_real = netD(real_images,fake_images)
 
         # Produce fake images
 
         #fake_images_low=generateDataWithDifferentFrequencies_3Channel(fake_images,r=R)
 
         # Produce logits for fake images
-        output_fake = netD(fake_images,real_images)
+        #output_fake = netD(fake_images,real_images)
 
         # Compute loss for D
-        errG = self.compute_gan_loss(output_real=output_fake,
-                                     output_fake=output_real)
+        errG = self.compute_gan_loss(output)
 
         # Compute loss
         #errG = self.compute_gan_loss(output=output)
@@ -331,14 +330,14 @@ class BaseDiscriminator(basemodel.BaseModel):
 
         #real_images_low,fake_images_low=generateDataWithDifferentFrequencies_exchange(real_images,fake_images,r=R)
         # Produce logits for real images
-        output_real = self.forward(real_images,fake_images)
+        output_real = self.forward(real_images)
 
         # Produce fake images
 
         #fake_images_low=generateDataWithDifferentFrequencies_3Channel(fake_images,r=R)
 
         # Produce logits for fake images
-        output_fake = self.forward(fake_images,real_images)
+        output_fake = self.forward(fake_images)
 
         # Compute loss for D
         errD = self.compute_gan_loss(output_real=output_real,
