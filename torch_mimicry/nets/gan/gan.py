@@ -106,7 +106,7 @@ class BaseGenerator(basemodel.BaseModel):
         fake_images = self.forward(noise)
 
         return fake_images
-    '''
+ 
 
     def compute_gan_loss(self, output):
         r"""
@@ -169,6 +169,7 @@ class BaseGenerator(basemodel.BaseModel):
             raise ValueError("Invalid loss_type selected.")
 
         return errD
+    '''
 
     def train_step(self,
                    real_batch,
